@@ -81,6 +81,9 @@ public class AddressBookService implements IAddressBookService {
         contact.setName(addressBookDTO.getName());
         contact.setPhone(addressBookDTO.getPhone());
         contact.setAddress(addressBookDTO.getAddress());
+        contact.setCity(addressBookDTO.getCity());
+        contact.setState(addressBookDTO.getState());
+        contact.setZipcode(addressBookDTO.getZipcode());
 
         AddressBook savedContact = addressBookRepository.save(contact);
 
@@ -99,6 +102,9 @@ public class AddressBookService implements IAddressBookService {
             contact.setName(addressBookDTO.getName());
             contact.setPhone(addressBookDTO.getPhone());
             contact.setAddress(addressBookDTO.getAddress());
+            contact.setCity(addressBookDTO.getCity());
+            contact.setState(addressBookDTO.getState());
+            contact.setZipcode(addressBookDTO.getZipcode());
 
             AddressBook updatedContact = addressBookRepository.save(contact);
 

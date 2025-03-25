@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
-@Data  // Lombok automatically generates getters, setters, toString, etc.
+@Data
 public class AddressBookDTO {
 
     @NotEmpty(message = "Name is required")
@@ -17,4 +17,14 @@ public class AddressBookDTO {
 
     @NotEmpty(message = "Address cannot be empty")
     private String address;
+
+    @NotEmpty(message = "City cannot be empty")
+    private String city;
+
+    @NotEmpty(message = "State cannot be empty")
+    private String state;
+
+    @NotEmpty(message = "Zip Code is required") // ✅ Ensure this exists
+    @Pattern(regexp = "^[0-9]{5,6}$", message = "Zip Code must be 5 or 6 digits")
+    private String zipcode;
 }

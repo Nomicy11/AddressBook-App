@@ -18,12 +18,13 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/addressbook")
 @Slf4j
+@CrossOrigin(origins = "http://localhost:4200")
 public class AddressBookController {
 
     @Autowired
     private IAddressBookService addressBookService;
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<AddressBook>> getAllContacts() {
         log.info("Received request to fetch all contacts");
         List<AddressBook> contacts = addressBookService.getAllContacts();
@@ -45,11 +46,10 @@ public class AddressBookController {
                 });
     }
 
-    @PostMapping
+    @PostMapping("/add")
     public ResponseEntity<?> addContact(@Valid @RequestBody AddressBookDTO addressBookDTO, BindingResult result) {
         log.info("Received request to add new contact: {}", addressBookDTO);
 
-        // Handling validation errors
         if (result.hasErrors()) {
             List<String> errors = result.getFieldErrors().stream()
                     .map(error -> error.getField() + ": " + error.getDefaultMessage())
@@ -63,11 +63,11 @@ public class AddressBookController {
         return ResponseEntity.ok(contact);
     }
 
+
     @PutMapping("/{id}")
     public ResponseEntity<?> updateContact(@PathVariable int id, @Valid @RequestBody AddressBookDTO addressBookDTO, BindingResult result) {
         log.info("Received request to update contact with ID: {}", id);
 
-        // Handling validation errors
         if (result.hasErrors()) {
             List<String> errors = result.getFieldErrors().stream()
                     .map(error -> error.getField() + ": " + error.getDefaultMessage())
