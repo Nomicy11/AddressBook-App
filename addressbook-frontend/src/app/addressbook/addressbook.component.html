@@ -1,0 +1,44 @@
+<div class="container">
+  <!-- Header Section -->
+  <div class="header">
+    <img src="../../assets/Addressbook_logo.jpg" alt="Address Book Logo" class="logo">
+    
+  </div>
+
+  <!-- Person Details Header & Add Button -->
+  <div class="person-header">
+    <h3>Person Details</h3>
+    <button routerLink="/register" class="add-btn">+ Add Person</button>
+  </div>
+
+  <!-- Table -->
+  <div class="table-container">
+    <table class="person-table">
+      <thead>
+        <tr>
+          <th>Fullname</th>
+          <th>Address</th>
+          <th>City</th>
+          <th>State</th>
+          <th>Zip Code</th>
+          <th>Phone Number</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let person of persons">
+          <td>{{ person.name }}</td>
+          <td>{{ person.address }}</td>
+          <td>{{ person.city }}</td>
+          <td>{{ person.state }}</td>
+          <td>{{ person.zipcode }}</td>
+          <td>{{ person.phone }}</td>
+          <td>
+            <button class="icon-btn" (click)="deleteContact(person.id)"><i class="fas fa-trash"></i></button>
+            <button class="icon-btn" (click)="editContact(person.id)"><i class="fas fa-edit"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
